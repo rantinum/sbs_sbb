@@ -1,5 +1,6 @@
-package com.sbs.exam1;
+package com.sbs.exam1.answer;
 
+import com.sbs.exam1.question.Question;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,19 +9,17 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity // answer 테이블
+@Entity
 public class Answer {
-    @Id // Primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "TEXT") // TEXT
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     private LocalDateTime createDate;
 
-    // private Integer questionId;
     @ManyToOne
     private Question question;
-    // question_id 라는 칼럼이 생김
 }

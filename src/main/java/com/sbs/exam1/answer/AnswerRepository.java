@@ -1,6 +1,5 @@
-package com.sbs.sbb;
+package com.sbs.exam1.answer;
 
-import com.sbs.exam1.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
