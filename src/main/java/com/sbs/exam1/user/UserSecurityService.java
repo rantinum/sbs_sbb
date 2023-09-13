@@ -1,8 +1,5 @@
 package com.sbs.exam1.user;
 
-import com.sbs.exam1.user.SiteUser;
-import com.sbs.exam1.user.UserRepository;
-import com.sbs.exam1.user.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

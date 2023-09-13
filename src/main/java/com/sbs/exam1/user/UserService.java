@@ -1,7 +1,5 @@
 package com.sbs.exam1.user;
 
-import com.sbs.exam1.user.SiteUser;
-import com.sbs.exam1.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
