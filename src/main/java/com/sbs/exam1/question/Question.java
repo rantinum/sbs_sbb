@@ -1,6 +1,7 @@
 package com.sbs.exam1.question;
 
 import com.sbs.exam1.answer.Answer;
+import com.sbs.exam1.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,4 +31,7 @@ public class Question {
 	// 선택
 	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;
+
+	@ManyToOne
+	private SiteUser author;
 }

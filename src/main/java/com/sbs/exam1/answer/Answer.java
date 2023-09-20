@@ -1,6 +1,7 @@
 package com.sbs.exam1.answer;
 
 import com.sbs.exam1.question.Question;
+import com.sbs.exam1.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,4 +23,7 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
 }
