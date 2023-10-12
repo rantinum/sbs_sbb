@@ -1,7 +1,11 @@
 package com.sbs.exam1.answer;
 
-import java.security.Principal;
-
+import com.sbs.exam1.question.Question;
+import com.sbs.exam1.question.QuestionService;
+import com.sbs.exam1.user.SiteUser;
+import com.sbs.exam1.user.UserService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,13 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.sbs.exam1.question.Question;
-import com.sbs.exam1.question.QuestionService;
-import com.sbs.exam1.user.SiteUser;
-import com.sbs.exam1.user.UserService;
-
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import java.security.Principal;
 
 @RequestMapping("/answer")
 @RequiredArgsConstructor
@@ -79,5 +77,15 @@ public class AnswerController {
         }
         this.answerService.delete(answer);
         return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+    }
+
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/vote/{id}")
+    public String answerVote(Principal principal, @PathVariable("id") Integer id){
+        Answer answer = this.answerService.getAnswer(id);
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        this.answerService.vote(answer, siteUser);
+        return String.format("redirect:/question/detail/%s", id);
     }
 }

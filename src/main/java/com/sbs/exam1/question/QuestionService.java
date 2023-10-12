@@ -1,20 +1,18 @@
 package com.sbs.exam1.question;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import com.sbs.exam1.DataNotFoundException;
+import com.sbs.exam1.user.SiteUser;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.sbs.exam1.DataNotFoundException;
-import com.sbs.exam1.user.SiteUser;
-
-import lombok.RequiredArgsConstructor;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -56,5 +54,10 @@ public class QuestionService {
 
     public void delete(Question question) {
         this.questionRepository.delete(question);
+    }
+
+    public void vote(Question question, SiteUser siteUser){
+        question.getVoter().add(siteUser);
+        this.questionRepository.save(question);
     }
 }
